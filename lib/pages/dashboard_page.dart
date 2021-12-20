@@ -60,7 +60,7 @@ class _DashboardPageState extends State<DashboardPage> {
               CardYear(),
               Container(
                   margin: EdgeInsets.only(top: 15, bottom: 15),
-                  child: Text("This month's summary",
+                  child: Text("This Month's Summary",
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: "Bahnschrift",
