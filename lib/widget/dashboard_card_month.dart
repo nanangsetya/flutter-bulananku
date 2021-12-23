@@ -1,3 +1,4 @@
+import 'package:bulananku/styles/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -37,7 +38,7 @@ class _CardMonthState extends State<CardMonth> {
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color(0xff161637),
+                    color: ColorStyle.cCardColor,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -47,11 +48,11 @@ class _CardMonthState extends State<CardMonth> {
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                            color: Color(0xffECE445),
+                            color: ColorStyle.cYellow,
                             borderRadius: BorderRadius.circular(10)),
                         child: Icon(
                           FontAwesomeIcons.utensils,
-                          color: Color(0xff161637),
+                          color: ColorStyle.cCardColor,
                         ),
                       ),
                       Container(
@@ -83,7 +84,7 @@ class _CardMonthState extends State<CardMonth> {
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color(0xff161637),
+                    color: ColorStyle.cCardColor,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -93,11 +94,11 @@ class _CardMonthState extends State<CardMonth> {
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                            color: Color(0xff459CEE),
+                            color: ColorStyle.cBlue,
                             borderRadius: BorderRadius.circular(10)),
                         child: Icon(
                           FontAwesomeIcons.tshirt,
-                          color: Color(0xff161637),
+                          color: ColorStyle.cCardColor,
                         ),
                       ),
                       Container(
@@ -129,7 +130,7 @@ class _CardMonthState extends State<CardMonth> {
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color(0xff161637),
+                    color: ColorStyle.cCardColor,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -139,11 +140,11 @@ class _CardMonthState extends State<CardMonth> {
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                            color: Color(0xff43D0A1),
+                            color: ColorStyle.cGreen,
                             borderRadius: BorderRadius.circular(10)),
                         child: Icon(
                           FontAwesomeIcons.building,
-                          color: Color(0xff161637),
+                          color: ColorStyle.cCardColor,
                         ),
                       ),
                       Container(
@@ -175,7 +176,7 @@ class _CardMonthState extends State<CardMonth> {
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color(0xff161637),
+                    color: ColorStyle.cCardColor,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -185,11 +186,11 @@ class _CardMonthState extends State<CardMonth> {
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
-                            color: Color(0xffFF5C58),
+                            color: ColorStyle.cRed,
                             borderRadius: BorderRadius.circular(10)),
                         child: Icon(
                           FontAwesomeIcons.robot,
-                          color: Color(0xff161637),
+                          color: ColorStyle.cCardColor,
                         ),
                       ),
                       Container(

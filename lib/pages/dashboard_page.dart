@@ -1,3 +1,4 @@
+import 'package:bulananku/styles/color_style.dart';
 import 'package:bulananku/widget/dashboard_card_lastweek.dart';
 import 'package:bulananku/widget/dashboard_card_month.dart';
 import 'package:bulananku/widget/dashboard_card_year.dart';
@@ -16,7 +17,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          color: Color(0xFF0B0B1B),
+          color: ColorStyle.cBaseColor,
           padding: EdgeInsets.only(
             left: MediaQuery.of(context).size.width * 0.04,
             right: MediaQuery.of(context).size.width * 0.04,

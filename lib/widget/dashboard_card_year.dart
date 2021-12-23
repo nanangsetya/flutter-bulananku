@@ -1,3 +1,4 @@
+import 'package:bulananku/styles/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -16,7 +17,7 @@ class _CardYearState extends State<CardYear> {
       height: 160,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Color(0xff161637),
+        color: ColorStyle.cCardColor,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Column(
@@ -44,7 +45,7 @@ class _CardYearState extends State<CardYear> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(FontAwesomeIcons.caretDown,
-                                color: Color(0xff43D0A1), size: 25),
+                                color: ColorStyle.cGreen, size: 25),
                             Text("income",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -71,7 +72,7 @@ class _CardYearState extends State<CardYear> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(FontAwesomeIcons.caretUp,
-                                color: Color(0xffFF5C58), size: 25),
+                                color: ColorStyle.cRed, size: 25),
                             Text("outcome",
                                 style: TextStyle(
                                     color: Colors.white,
