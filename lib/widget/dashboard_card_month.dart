@@ -15,6 +15,7 @@ class _CardMonthState extends State<CardMonth> {
       children: [
         Container(
             margin: EdgeInsets.only(top: 15, bottom: 15),
+            alignment: Alignment.centerLeft,
             child: Text("This Month's Summary",
                 style: TextStyle(
                     color: Colors.white,

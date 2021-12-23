@@ -1,3 +1,4 @@
+import 'package:bulananku/widget/dashboard_card_lastweek.dart';
 import 'package:bulananku/widget/dashboard_card_month.dart';
 import 'package:bulananku/widget/dashboard_card_year.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,7 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               CardYear(),
               CardMonth(),
+              CardWeek(),
             ],
           ),
         ),
