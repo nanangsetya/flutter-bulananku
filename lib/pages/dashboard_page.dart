@@ -67,23 +67,37 @@ class _DashboardPageState extends State<DashboardPage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        backgroundColor: ColorStyle.cCardColor,
+        unselectedItemColor: Colors.white,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(
+              FontAwesomeIcons.home,
+            ),
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(
+              Icons.business,
+            ),
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(
+              Icons.school,
+            ),
+            label: '',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: null,
+        selectedItemColor: ColorStyle.cGreen,
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
     );
   }
