@@ -66,7 +66,7 @@ class boxSummary extends StatelessWidget {
         color: ColorStyle.cCardColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.black,
+            color: Color(0xffECF2FF),
             spreadRadius: 0,
             blurRadius: 4,
             offset: Offset(0, 0), // changes position of shadow

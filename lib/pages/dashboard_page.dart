@@ -27,7 +27,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     color: Color(0xff43D0A1),
                   ),
                   Container(
-                    padding: EdgeInsets.only(
+                    margin: EdgeInsets.only(
                       left: MediaQuery.of(context).size.width * 0.04,
                       right: MediaQuery.of(context).size.width * 0.04,
                     ),
