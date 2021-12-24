@@ -18,50 +18,69 @@ class _DashboardPageState extends State<DashboardPage> {
       body: SafeArea(
         child: Container(
           color: ColorStyle.cBaseColor,
-          padding: EdgeInsets.only(
-            left: MediaQuery.of(context).size.width * 0.04,
-            right: MediaQuery.of(context).size.width * 0.04,
-          ),
           child: ListView(
             children: [
-              Container(
-                margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.width * 0.04),
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: CircleAvatar(
-                        radius: 50.0,
-                        child: ClipRRect(
-                          child: Image.asset('images/avatarw.jpeg'),
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                      ),
+              Stack(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    color: Color(0xff43D0A1),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.04,
+                      right: MediaQuery.of(context).size.width * 0.04,
                     ),
-                    Expanded(flex: 4, child: Text("")),
-                    Expanded(
-                        flex: 5,
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            "Chelsea Islan",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: "Bahnschrift",
-                              fontWeight: FontWeight.w700,
-                            ),
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.width * 0.04),
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.07,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  flex: 2,
+                                  child: Container(
+                                    padding: EdgeInsets.all(3),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle),
+                                    child: CircleAvatar(
+                                      radius: 50,
+                                      backgroundColor: Colors.white,
+                                      backgroundImage:
+                                          AssetImage("images/avatarw.jpeg"),
+                                    ),
+                                  )),
+                              Expanded(flex: 3, child: Text("")),
+                              Expanded(
+                                  flex: 5,
+                                  child: Container(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      "Chelsea Islan",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontFamily: "Bahnschrift",
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  )),
+                            ],
                           ),
-                        )),
-                  ],
-                ),
+                        ),
+                        CardYear(),
+                        CardMonth(),
+                        CardWeek(),
+                        CardWeek(),
+                      ],
+                    ),
+                  )
+                ],
               ),
-              CardYear(),
-              CardMonth(),
-              CardWeek(),
             ],
           ),
         ),

@@ -19,7 +19,7 @@ class _CardMonthState extends State<CardMonth> {
             alignment: Alignment.centerLeft,
             child: Text("This Month's Summary",
                 style: TextStyle(
-                    color: Colors.white,
+                    color: ColorStyle.cText,
                     fontFamily: "Bahnschrift",
                     fontWeight: FontWeight.bold,
                     fontSize: 14))),
@@ -34,193 +34,83 @@ class _CardMonthState extends State<CardMonth> {
               mainAxisSpacing: 10,
               crossAxisCount: 2,
               children: [
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: ColorStyle.cCardColor,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: ColorStyle.cYellow,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Icon(
-                          FontAwesomeIcons.utensils,
-                          color: ColorStyle.cCardColor,
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Text(
-                          "Food",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Bahnschrift",
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 5),
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          "125.000",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Bahnschrift",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: ColorStyle.cCardColor,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: ColorStyle.cBlue,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Icon(
-                          FontAwesomeIcons.tshirt,
-                          color: ColorStyle.cCardColor,
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Text(
-                          "Cloth",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Bahnschrift",
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 5),
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          "165.000",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Bahnschrift",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: ColorStyle.cCardColor,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: ColorStyle.cGreen,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Icon(
-                          FontAwesomeIcons.building,
-                          color: ColorStyle.cCardColor,
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Text(
-                          "Building",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Bahnschrift",
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 5),
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          "125.000",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Bahnschrift",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: ColorStyle.cCardColor,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: ColorStyle.cRed,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Icon(
-                          FontAwesomeIcons.robot,
-                          color: ColorStyle.cCardColor,
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Text(
-                          "Tertiary",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Bahnschrift",
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 5),
-                        alignment: Alignment.centerRight,
-                        child: Text(
-                          "75.000",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Bahnschrift",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                boxSummary(ColorStyle.cYellow, FontAwesomeIcons.utensils,
+                    "Food", "125.000"),
+                boxSummary(ColorStyle.cBlue, FontAwesomeIcons.tshirt, "Clothes",
+                    "165.000"),
+                boxSummary(ColorStyle.cGreen, FontAwesomeIcons.building,
+                    "Building", "50.000"),
+                boxSummary(ColorStyle.cRed, FontAwesomeIcons.robot, "Tertriary",
+                    "75.000"),
               ],
             )),
       ],
+    );
+  }
+}
+
+class boxSummary extends StatelessWidget {
+  final Color iconColor;
+  final IconData iconData;
+  final String boxName;
+  final String boxTotal;
+
+  const boxSummary(this.iconColor, this.iconData, this.boxName, this.boxTotal);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: ColorStyle.cCardColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            spreadRadius: 0,
+            blurRadius: 4,
+            offset: Offset(0, 0), // changes position of shadow
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 40,
+            width: 40,
+            decoration: BoxDecoration(
+                color: iconColor, borderRadius: BorderRadius.circular(10)),
+            child: Icon(
+              iconData,
+              color: ColorStyle.cCardColor,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            child: Text(
+              boxName,
+              style: TextStyle(
+                  color: ColorStyle.cText,
+                  fontFamily: "Bahnschrift",
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 5),
+            alignment: Alignment.centerRight,
+            child: Text(
+              boxTotal,
+              style: TextStyle(
+                  color: ColorStyle.cText,
+                  fontFamily: "Bahnschrift",
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

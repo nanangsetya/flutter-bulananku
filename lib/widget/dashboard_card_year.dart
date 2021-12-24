@@ -19,13 +19,21 @@ class _CardYearState extends State<CardYear> {
       decoration: BoxDecoration(
         color: ColorStyle.cCardColor,
         borderRadius: BorderRadius.circular(5),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xffE2DFDF).withOpacity(0.5),
+            spreadRadius: 0,
+            blurRadius: 4,
+            offset: Offset(1, 4), // changes position of shadow
+          ),
+        ],
       ),
       child: Column(
         children: [
           Text(
             "This year",
             style: TextStyle(
-              color: Colors.white,
+              color: ColorStyle.cText,
               fontSize: 16,
               fontFamily: "Bahnschrift",
               fontWeight: FontWeight.bold,
@@ -48,7 +56,7 @@ class _CardYearState extends State<CardYear> {
                                 color: ColorStyle.cGreen, size: 25),
                             Text("income",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: ColorStyle.cText,
                                     fontFamily: "Bahnschrift",
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14)),
@@ -56,7 +64,7 @@ class _CardYearState extends State<CardYear> {
                         ),
                         Text('3.500.000',
                             style: TextStyle(
-                                color: Colors.white,
+                                color: ColorStyle.cText,
                                 fontFamily: "Bahnschrift",
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17)),
@@ -75,7 +83,7 @@ class _CardYearState extends State<CardYear> {
                                 color: ColorStyle.cRed, size: 25),
                             Text("outcome",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: ColorStyle.cText,
                                     fontFamily: "Bahnschrift",
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14)),
@@ -83,7 +91,7 @@ class _CardYearState extends State<CardYear> {
                         ),
                         Text('750.000',
                             style: TextStyle(
-                                color: Colors.white,
+                                color: ColorStyle.cText,
                                 fontFamily: "Bahnschrift",
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17)),
