@@ -21,7 +21,7 @@ class _CardWeekState extends State<CardWeek> {
               alignment: Alignment.centerLeft,
               child: Text("Last Week",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: ColorStyle.cText,
                       fontFamily: "Bahnschrift",
                       fontWeight: FontWeight.bold,
                       fontSize: 14))),

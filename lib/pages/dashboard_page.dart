@@ -25,6 +25,50 @@ class _DashboardPageState extends State<DashboardPage> {
                   Container(
                     height: MediaQuery.of(context).size.height * 0.2,
                     color: Color(0xff43D0A1),
+                    child: ClipRRect(
+                      //to clip overflown positioned containers.
+                      // borderRadius: BorderRadius.circular(30),
+                      //if we set border radius on container, the overflown content get displayed at corner.
+                      child: Container(
+                          child: Stack(
+                        children: <Widget>[
+                          //Stack helps to overlap widgets
+                          Positioned(
+                              //positioned helps to position widget wherever we want.
+                              top: -45,
+                              right: -150, //position of the widget
+                              child: RotationTransition(
+                                turns: AlwaysStoppedAnimation(30 / 360),
+                                child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.3,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(
+                                            0xff4CDAAA) //background color with opacity
+                                        )),
+                              )),
+
+                          Positioned(
+                              //positioned helps to position widget wherever we want.
+                              top: -70,
+                              right: -250, //position of the widget
+                              child: RotationTransition(
+                                turns: AlwaysStoppedAnimation(30 / 360),
+                                child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.3,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Color(
+                                            0xff75E2BE) //background color with opacity
+                                        )),
+                              )),
+                        ],
+                      )),
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(
@@ -87,7 +131,7 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: ColorStyle.cCardColor,
-        unselectedItemColor: Colors.white,
+        unselectedItemColor: ColorStyle.cText,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: <BottomNavigationBarItem>[
