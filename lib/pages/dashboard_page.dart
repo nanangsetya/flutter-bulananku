@@ -120,7 +120,6 @@ class _DashboardPageState extends State<DashboardPage> {
                         CardYear(),
                         CardMonth(),
                         CardWeek(),
-                        CardWeek(),
                       ],
                     ),
                   )
@@ -130,38 +129,48 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: ColorStyle.cCardColor,
-        unselectedItemColor: ColorStyle.cText,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              LineIcons.home,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Color(0xffD8E5FF),
+              blurRadius: 10,
             ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              LineIcons.barChartAlt,
+          ],
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: ColorStyle.cCardColor,
+          unselectedItemColor: ColorStyle.cText,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                LineIcons.home,
+              ),
+              label: '',
             ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              LineIcons.user,
+            BottomNavigationBarItem(
+              icon: Icon(
+                LineIcons.barChartAlt,
+              ),
+              label: '',
             ),
-            label: '',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: ColorStyle.cGreen,
-        onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
+            BottomNavigationBarItem(
+              icon: Icon(
+                LineIcons.user,
+              ),
+              label: '',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: ColorStyle.cGreen,
+          onTap: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+        ),
       ),
     );
   }

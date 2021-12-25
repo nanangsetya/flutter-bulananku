@@ -31,6 +31,14 @@ class _CardWeekState extends State<CardWeek> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               color: ColorStyle.cCardColor,
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xffECF2FF),
+                  spreadRadius: 0,
+                  blurRadius: 4,
+                  offset: Offset(0, 0), // changes position of shadow
+                ),
+              ],
             ),
             child: Column(
               children: [
@@ -40,7 +48,7 @@ class _CardWeekState extends State<CardWeek> {
                     alignment: Alignment.centerLeft,
                     child: Text("Dec 23",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: ColorStyle.cText,
                           fontFamily: "Bahnschrift",
                           fontWeight: FontWeight.bold,
                           fontSize: 13,
@@ -74,14 +82,14 @@ class _CardWeekState extends State<CardWeek> {
                               children: [
                                 Text("Jacket",
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: ColorStyle.cText,
                                       fontFamily: "Bahnschrift",
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
                                     )),
                                 Text("12:10",
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: ColorStyle.cText,
                                       fontFamily: "Bahnschrift",
                                       fontSize: 12,
                                     )),
@@ -94,7 +102,7 @@ class _CardWeekState extends State<CardWeek> {
                             alignment: Alignment.centerRight,
                             child: Text("125.000",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: ColorStyle.cText,
                                   fontFamily: "Bahnschrift",
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
@@ -130,14 +138,14 @@ class _CardWeekState extends State<CardWeek> {
                               children: [
                                 Text("Lunch",
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: ColorStyle.cText,
                                       fontFamily: "Bahnschrift",
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
                                     )),
                                 Text("13:10",
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: ColorStyle.cText,
                                       fontFamily: "Bahnschrift",
                                       fontSize: 12,
                                     )),
@@ -150,7 +158,7 @@ class _CardWeekState extends State<CardWeek> {
                             alignment: Alignment.centerRight,
                             child: Text("125.000",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: ColorStyle.cText,
                                   fontFamily: "Bahnschrift",
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
