@@ -4,6 +4,7 @@ import 'package:bulananku/widget/dashboard_card_month.dart';
 import 'package:bulananku/widget/dashboard_card_year.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:line_icons/line_icons.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -137,19 +138,19 @@ class _DashboardPageState extends State<DashboardPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              FontAwesomeIcons.home,
+              LineIcons.home,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.business,
+              LineIcons.barChartAlt,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.school,
+              LineIcons.user,
             ),
             label: '',
           ),
