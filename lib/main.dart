@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
     ]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: LoginPage()),
+      home: LoginPage(),
     );
   }
 }
