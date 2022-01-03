@@ -1,5 +1,7 @@
 import 'package:bulananku/pages/dashboard_page.dart';
+import 'package:bulananku/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dialogs/flutter_dialogs.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -17,6 +19,24 @@ class _LoginPageState extends State<LoginPage> {
   void showMsg(String msg) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(msg)),
+    );
+  }
+
+  _showAlert(BuildContext context, String title, String msg) {
+    showPlatformDialog(
+      context: context,
+      builder: (_) => BasicDialogAlert(
+        title: Text(title),
+        content: Text(msg),
+        actions: <Widget>[
+          BasicDialogAction(
+            title: Text("OK"),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -84,10 +104,6 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           validator: (_usernameValue) {
-                            if (_usernameValue == null ||
-                                _usernameValue.isEmpty) {
-                              return 'Please enter your username';
-                            }
                             username = _usernameValue;
                             return null;
                           }),
@@ -117,10 +133,6 @@ class _LoginPageState extends State<LoginPage> {
                                 color: Colors.white,
                               )),
                           validator: (_passwordValue) {
-                            if (_passwordValue == null ||
-                                _passwordValue.isEmpty) {
-                              showMsg("Username or Password cannot be empty");
-                            }
                             password = _passwordValue;
                             return null;
                           }),
@@ -133,7 +145,19 @@ class _LoginPageState extends State<LoginPage> {
                           //       builder: (context) => DashboardPage()),
                           // );
                           if (formGlobalKey.currentState!.validate()) {
-                            showMsg("Processing Data");
+                            // showMsg("Processing Data");
+                            Auth.loginProcess(username, password).then((value) {
+                              _showAlert(
+                                  context,
+                                  value.status.toString(),
+                                  "id user = " +
+                                      value.id.toString() +
+                                      " name = " +
+                                      value.name.toString());
+                            });
+                          } else {
+                            _showAlert(context, "Failed",
+                                "Username or Password cannot be empty");
                           }
                         },
                         child: Text('LOGIN',
