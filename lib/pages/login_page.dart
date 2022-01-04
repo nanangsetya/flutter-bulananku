@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bulananku/pages/dashboard_page.dart';
 import 'package:bulananku/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _usernameValue = false;
   bool _passwordValue = false;
   final formGlobalKey = GlobalKey<FormState>();
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  bool _secureText = true;
-
-  void showMsg(String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(msg)),
-    );
-  }
+  bool _isButtonDisabled = false;
 
   _showAlert(BuildContext context, String title, String msg) {
     showPlatformDialog(
@@ -43,7 +38,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       body: Stack(
         children: [
           Container(
@@ -139,28 +133,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => DashboardPage()),
-                          // );
-                          if (formGlobalKey.currentState!.validate()) {
-                            // showMsg("Processing Data");
-                            Auth.loginProcess(username, password).then((value) {
-                              _showAlert(
-                                  context,
-                                  value.status.toString(),
-                                  "id user = " +
-                                      value.id.toString() +
-                                      " name = " +
-                                      value.name.toString());
-                            });
-                          } else {
-                            _showAlert(context, "Failed",
-                                "Username or Password cannot be empty");
-                          }
+                          _isButtonDisabled ? null : loginProcess();
                         },
-                        child: Text('LOGIN',
+                        child: Text(_isButtonDisabled ? '' : 'LOGIN',
                             style: TextStyle(
                                 fontFamily: "Arvo",
                                 fontWeight: FontWeight.w700,
@@ -179,5 +154,37 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  void loginProcess() {
+    setState(() {
+      _isButtonDisabled = true;
+    });
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //       builder: (context) => DashboardPage()),
+    // );
+    // if (username == false || password == false) {
+    //   _showAlert(context, "Failed",
+    //       "Username or Password cannot be empty");
+    // } else {
+    if (formGlobalKey.currentState!.validate()) {
+      Auth.loginProcess(username, password).then((value) {
+        _showAlert(
+            context,
+            value.status.toString(),
+            "id user = " +
+                value.id.toString() +
+                " name = " +
+                value.name.toString());
+      });
+    } else {
+      _showAlert(context, "Failed", "Username or Password cannot be empty");
+    }
+
+    setState(() {
+      _isButtonDisabled = false;
+    });
   }
 }

@@ -2,7 +2,11 @@ class LoginResult {
   bool status;
   int id;
   String name;
-  int role_id;
+  int roleId;
 
-  LoginResult(this.status, this.id, this.name, this.role_id);
+  LoginResult(
+      {required this.status,
+      required this.id,
+      required this.name,
+      required this.roleId});
 }

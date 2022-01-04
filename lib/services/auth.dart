@@ -11,7 +11,10 @@ class Auth {
         body: {"username": username, "password": password});
     var jsonObject = json.decode(apiResult.body);
 
-    return LoginResult(jsonObject['status'], jsonObject['id'],
-        jsonObject['name'], jsonObject['role_id']);
+    return LoginResult(
+        status: jsonObject['status'],
+        id: jsonObject['id'],
+        name: jsonObject['name'],
+        roleId: jsonObject['role_id']);
   }
 }
