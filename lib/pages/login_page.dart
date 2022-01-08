@@ -171,13 +171,20 @@ class _LoginPageState extends State<LoginPage> {
     // } else {
     if (formGlobalKey.currentState!.validate()) {
       Auth.loginProcess(username, password).then((value) {
-        _showAlert(
-            context,
-            value.status.toString(),
-            "id user = " +
-                value.id.toString() +
-                " name = " +
-                value.name.toString());
+        if (value.status) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => DashboardPage()));
+
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => DashboardPage()),
+          // );
+        } else {
+          _showAlert(
+              context, value.status.toString(), value.message.toString());
+        }
       });
     } else {
       _showAlert(context, "Failed", "Username or Password cannot be empty");

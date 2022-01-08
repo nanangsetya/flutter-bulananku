@@ -7,14 +7,25 @@ class Auth {
   static Future<LoginResult> loginProcess(
       String username, String password) async {
     var apiResult = await http.post(
-        Uri.parse("http://192.168.43.212/cv_rahayu/api/Login/index"),
-        body: {"username": username, "password": password});
-    var jsonObject = json.decode(apiResult.body);
+        Uri.parse("https://bulananku-laravel.pieceofsite.com/api/login"),
+        body: {"email": username, "password": password});
+    Map<String, dynamic> jsonObject = json.decode(apiResult.body);
+    Map<String, dynamic> data = jsonObject['data'];
 
-    return LoginResult(
-        status: jsonObject['status'],
-        id: jsonObject['id'],
-        name: jsonObject['name'],
-        roleId: jsonObject['role_id']);
+    if (jsonObject['success']) {
+      return LoginResult(
+          status: jsonObject['success'],
+          id: data['id'],
+          name: data['name'],
+          accessToken: data['token'],
+          message: jsonObject['message']);
+    } else {
+      return LoginResult(
+          status: jsonObject['success'],
+          id: 0,
+          name: "",
+          accessToken: "",
+          message: "Username and Password not found");
+    }
   }
 }
