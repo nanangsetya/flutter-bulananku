@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bulananku/models/Login.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Auth {
   static Future<LoginResult> loginProcess(
@@ -13,6 +14,11 @@ class Auth {
     Map<String, dynamic> data = jsonObject['data'];
 
     if (jsonObject['success']) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setBool('login', true);
+      await prefs.setString('name', data['name']);
+      await prefs.setString('token', data['token']);
+
       return LoginResult(
           status: jsonObject['success'],
           id: data['id'],
