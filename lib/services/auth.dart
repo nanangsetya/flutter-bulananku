@@ -16,8 +16,9 @@ class Auth {
     if (jsonObject['success']) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('login', true);
-      await prefs.setString('name', data['name']);
-      await prefs.setString('token', data['token']);
+      await prefs.setString('user_id', data['id'].toString());
+      await prefs.setString('user_name', data['name']);
+      await prefs.setString('user_token', data['token']);
 
       return LoginResult(
           status: jsonObject['success'],

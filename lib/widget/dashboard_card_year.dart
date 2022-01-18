@@ -1,3 +1,4 @@
+import 'package:bulananku/services/get_data_this_year.dart';
 import 'package:bulananku/styles/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,6 +11,23 @@ class CardYear extends StatefulWidget {
 }
 
 class _CardYearState extends State<CardYear> {
+  String _income = "0";
+  String _outcome = "0";
+
+  setData() async {
+    var data = await GetThisYear.getData();
+    setState(() {
+      _income = data.income;
+      _outcome = data.outcome;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,7 +80,7 @@ class _CardYearState extends State<CardYear> {
                                     fontSize: 14)),
                           ],
                         ),
-                        Text('3.500.000',
+                        Text(_income,
                             style: TextStyle(
                                 color: ColorStyle.cText,
                                 fontFamily: "Bahnschrift",
@@ -89,7 +107,7 @@ class _CardYearState extends State<CardYear> {
                                     fontSize: 14)),
                           ],
                         ),
-                        Text('750.000',
+                        Text(_outcome,
                             style: TextStyle(
                                 color: ColorStyle.cText,
                                 fontFamily: "Bahnschrift",

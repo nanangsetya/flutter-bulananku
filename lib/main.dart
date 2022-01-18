@@ -17,13 +17,13 @@ class _MyAppState extends State<MyApp> {
   final isLogin = false;
 
   @override
-  void checkLogin() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool("login") == true) {
-      isLogin == true;
-    }
-    setState(() {});
-  }
+//   void checkLogin() async {
+//     final prefs = await SharedPreferences.getInstance();
+//     if (prefs.getBool("login") == true) {
+//       isLogin == true;
+//     }
+//     setState(() {});
+//   }
 
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
     ]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: (isLogin ? LoginPage() : DashboardPage()),
+      home: (isLogin ? DashboardPage() : LoginPage()),
     );
   }
 }

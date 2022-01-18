@@ -5,6 +5,7 @@ import 'package:bulananku/widget/dashboard_card_year.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -12,6 +13,21 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  String user_name = '';
+
+  Future<Null> getName() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      user_name = prefs.getString('user_name').toString();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getName();
+  }
+
   @override
   int _selectedIndex = 0;
   Widget build(BuildContext context) {
@@ -105,7 +121,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   child: Container(
                                     alignment: Alignment.centerRight,
                                     child: Text(
-                                      "Chelsea Islan",
+                                      user_name,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 20,
