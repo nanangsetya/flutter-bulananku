@@ -1,3 +1,5 @@
+import 'package:bulananku/models/this_month.dart';
+import 'package:bulananku/services/get_data_this_month.dart';
 import 'package:bulananku/styles/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,6 +13,17 @@ class CardMonth extends StatefulWidget {
 }
 
 class _CardMonthState extends State<CardMonth> {
+  setData() async {
+    var listData = await GetThisMonth.getData();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,14 +48,34 @@ class _CardMonthState extends State<CardMonth> {
               mainAxisSpacing: 10,
               crossAxisCount: 2,
               children: [
-                boxSummary(ColorStyle.cYellow, FontAwesomeIcons.utensils,
-                    "Food", "125.000"),
-                boxSummary(ColorStyle.cBlue, FontAwesomeIcons.tshirt, "Clothes",
-                    "165.000"),
-                boxSummary(ColorStyle.cGreen, FontAwesomeIcons.building,
-                    "Building", "50.000"),
-                boxSummary(ColorStyle.cRed, FontAwesomeIcons.robot, "Tertriary",
-                    "75.000"),
+                FutureBuilder<List<MonthResult>>(
+                  future: GetThisMonth.getData(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      List<MonthResult> months = snapshot.data;
+                      months.map((month) => new boxSummary(
+                          ColorStyle.cYellow,
+                          FontAwesomeIcons.utensils,
+                          month.category,
+                          month.nominal));
+                      // return new boxSummary(months.ca, iconData, boxName, boxTotal)
+                    } else if (snapshot.hasError) {
+                      new boxSummary(ColorStyle.cYellow,
+                          FontAwesomeIcons.utensils, "Food", "125.000");
+                    } else {
+                      new boxSummary(ColorStyle.cYellow,
+                          FontAwesomeIcons.utensils, "Food", "125.000");
+                    }
+                  },
+                ),
+                // boxSummary(ColorStyle.cYellow, FontAwesomeIcons.utensils,
+                //     "Food", "125.000"),
+                // boxSummary(ColorStyle.cBlue, FontAwesomeIcons.tshirt, "Clothes",
+                //     "165.000"),
+                // boxSummary(ColorStyle.cGreen, FontAwesomeIcons.building,
+                //     "Building", "50.000"),
+                // boxSummary(ColorStyle.cRed, FontAwesomeIcons.robot, "Tertriary",
+                //     "75.000"),
               ],
             )),
       ],
