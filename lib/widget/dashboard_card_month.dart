@@ -13,17 +13,6 @@ class CardMonth extends StatefulWidget {
 }
 
 class _CardMonthState extends State<CardMonth> {
-  setData() async {
-    var listData = await GetThisMonth.getData();
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setData();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,24 +37,41 @@ class _CardMonthState extends State<CardMonth> {
               mainAxisSpacing: 10,
               crossAxisCount: 2,
               children: [
-                FutureBuilder<List<MonthResult>>(
+                FutureBuilder(
                   future: GetThisMonth.getData(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData) {
-                      List<MonthResult> months = snapshot.data;
-                      months.map((month) => new boxSummary(
-                          ColorStyle.cYellow,
-                          FontAwesomeIcons.utensils,
-                          month.category,
-                          month.nominal));
-                      // return new boxSummary(months.ca, iconData, boxName, boxTotal)
-                    } else if (snapshot.hasError) {
-                      new boxSummary(ColorStyle.cYellow,
-                          FontAwesomeIcons.utensils, "Food", "125.000");
-                    } else {
-                      new boxSummary(ColorStyle.cYellow,
-                          FontAwesomeIcons.utensils, "Food", "125.000");
-                    }
+                    List<MonthResult> months = snapshot.data ?? [];
+                    return ListView.builder(
+                      itemCount: months.length,
+                      itemBuilder: (context, index) {
+                        return new Text(months[index].category.toString());
+                      },
+                    );
+
+                    // if (snapshot.hasData) {
+                    //   List<MonthResult> months = snapshot.data ?? [];
+                    //   for (var i = 0; i < months.length; i++) {
+                    //     return new boxSummary(
+                    //         ColorStyle.cYellow,
+                    //         FontAwesomeIcons.utensils,
+                    //         months[i].category,
+                    //         months[i].nominal);
+                    //   }
+
+                    //   // return months.map((month) => boxSummary(
+                    //   //     ColorStyle.cYellow,
+                    //   //     FontAwesomeIcons.utensils,
+                    //   //     month.category,
+                    //   //     month.nominal));
+                    //   // return new boxSummary(months.ca, iconData, boxName, boxTotal)
+                    // } else if (!snapshot.hasData) {
+                    //   return Center(child: CircularProgressIndicator());
+                    // } else if (snapshot.hasError) {
+                    //   return Text("aaa");
+                    // } else {
+                    //   return boxSummary(ColorStyle.cYellow,
+                    //       FontAwesomeIcons.utensils, "Food", "125.000");
+                    // }
                   },
                 ),
                 // boxSummary(ColorStyle.cYellow, FontAwesomeIcons.utensils,
