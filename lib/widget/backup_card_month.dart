@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bulananku/models/this_month.dart';
 import 'package:bulananku/services/get_data_this_month.dart';
 import 'package:bulananku/styles/color_style.dart';
@@ -29,49 +27,71 @@ class _CardMonthState extends State<CardMonth> {
                     fontWeight: FontWeight.bold,
                     fontSize: 14))),
         Container(
-          width: MediaQuery.of(context).size.width,
-          child: FutureBuilder(
-            future: GetThisMonth.getData(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              // print(snapshot.data.size);
-              if (snapshot.data == null) {
-                return Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasData) {
-                return GridView.builder(
-                  itemCount: snapshot.data.length,
-                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  primary: false,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 16 / 9,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    // crossAxisCount: 2,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    // return Container(
-                    //   child: Text("asaaa"),
-                    // );
-                    // return Text(
-                    //   "${snapshot.data[index].nominal}",
-                    //   style: TextStyle(fontSize: 12, color: Colors.red),
+            width: MediaQuery.of(context).size.width,
+            child: GridView.count(
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              childAspectRatio: 16 / 9,
+              primary: false,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              crossAxisCount: 2,
+              children: [
+                FutureBuilder(
+                  future: GetThisMonth.getData(),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    List<MonthResult> months = snapshot.data ?? [];
+                    // return ListView.builder(
+                    //   itemCount: months.length,
+                    //   itemBuilder: (context, index) {
+                    //     return new Text(months[index].category.toString());
+                    //   },
                     // );
 
-                    return boxSummary(
-                        ColorStyle.cBlue,
-                        FontAwesomeIcons.ubuntu,
-                        snapshot.data[index].category.toString(),
-                        snapshot.data[index].nominal.toString());
+                    if (snapshot.hasData) {
+                      List<Widget> children = [];
+                      List<MonthResult> months = snapshot.data ?? [];
+                      for (var i = 0; i < months.length; i++) {
+                        children.add(boxSummary(
+                            ColorStyle.cYellow,
+                            FontAwesomeIcons.utensils,
+                            months[i].category,
+                            months[i].nominal));
+                        // return new boxSummary(
+                        //     ColorStyle.cYellow,
+                        //     FontAwesomeIcons.utensils,
+                        //     months[i].category,
+                        //     months[i].nominal);
+                      }
+
+                      return children;
+
+                      // return months.map((month) => boxSummary(
+                      //     ColorStyle.cYellow,
+                      //     FontAwesomeIcons.utensils,
+                      //     month.category,
+                      //     month.nominal));
+                      // return new boxSummary(months.ca, iconData, boxName, boxTotal)
+                    } else if (!snapshot.hasData) {
+                      return Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Text("aaa");
+                    } else {
+                      return boxSummary(ColorStyle.cYellow,
+                          FontAwesomeIcons.utensils, "Food", "125.000");
+                    }
                   },
-                );
-              } else {
-                return Center(child: CircularProgressIndicator());
-                // return Text("eror");
-              }
-            },
-          ),
-        ),
+                ),
+                // boxSummary(ColorStyle.cYellow, FontAwesomeIcons.utensils,
+                //     "Food", "125.000"),
+                // boxSummary(ColorStyle.cBlue, FontAwesomeIcons.tshirt, "Clothes",
+                //     "165.000"),
+                // boxSummary(ColorStyle.cGreen, FontAwesomeIcons.building,
+                //     "Building", "50.000"),
+                // boxSummary(ColorStyle.cRed, FontAwesomeIcons.robot, "Tertriary",
+                //     "75.000"),
+              ],
+            )),
       ],
     );
   }

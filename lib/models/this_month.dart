@@ -7,6 +7,6 @@ class MonthResult {
   factory MonthResult.fromJson(Map<String, dynamic> json) {
     return new MonthResult(
         category: json['category'].toString(),
-        nominal: json['nominal'].toString());
+        nominal: json['outcome'].toString());
   }
 }

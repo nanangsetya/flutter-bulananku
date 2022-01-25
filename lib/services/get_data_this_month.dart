@@ -17,6 +17,8 @@ class GetThisMonth {
           "user_id": prefs.getString('user_id')
         });
     Map<String, dynamic> jsonObject = json.decode(apiResult.body);
+
+    // return jsonObject['data'].map<MonthResult>(MonthResult.fromJson(e)).toList();
     // Map<String, dynamic> data = jsonObject['data'];
     // return (data as List).map((e) => MonthResult.fromJson(e)).toList();
     return (jsonObject['data'] as List)
