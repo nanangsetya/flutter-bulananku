@@ -50,14 +50,6 @@ class _CardMonthState extends State<CardMonth> {
                     // crossAxisCount: 2,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    // return Container(
-                    //   child: Text("asaaa"),
-                    // );
-                    // return Text(
-                    //   "${snapshot.data[index].nominal}",
-                    //   style: TextStyle(fontSize: 12, color: Colors.red),
-                    // );
-
                     return boxSummary(
                         ColorStyle.cBlue,
                         FontAwesomeIcons.ubuntu,
