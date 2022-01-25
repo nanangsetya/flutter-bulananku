@@ -33,7 +33,6 @@ class _CardMonthState extends State<CardMonth> {
           child: FutureBuilder(
             future: GetThisMonth.getData(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              // print(snapshot.data.size);
               if (snapshot.data == null) {
                 return Center(child: CircularProgressIndicator());
               } else if (snapshot.hasData) {
@@ -59,7 +58,6 @@ class _CardMonthState extends State<CardMonth> {
                 );
               } else {
                 return Center(child: CircularProgressIndicator());
-                // return Text("eror");
               }
             },
           ),
