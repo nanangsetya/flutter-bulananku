@@ -15,6 +15,13 @@ class CardMonth extends StatefulWidget {
 }
 
 class _CardMonthState extends State<CardMonth> {
+  Set<Map<dynamic, dynamic>> contents = {
+    {"color": ColorStyle.cYellow, "icon": FontAwesomeIcons.utensils},
+    {"color": ColorStyle.cBlue, "icon": FontAwesomeIcons.tshirt},
+    {"color": ColorStyle.cGreen, "icon": FontAwesomeIcons.building},
+    {"color": ColorStyle.cRed, "icon": FontAwesomeIcons.robot}
+  };
+
   @override
   Widget build(BuildContext context) {
     return Column(
