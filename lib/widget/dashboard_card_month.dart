@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:bulananku/helper/colors_helper.dart';
+import 'package:bulananku/helper/icons_helper.dart';
 import 'package:bulananku/models/this_month.dart';
 import 'package:bulananku/services/get_data_this_month.dart';
 import 'package:bulananku/styles/color_style.dart';
@@ -57,8 +59,9 @@ class _CardMonthState extends State<CardMonth> {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     return boxSummary(
-                        ColorStyle.cBlue,
-                        FontAwesomeIcons.ubuntu,
+                        getColor(name: snapshot.data[index].color.toString()),
+                        getFontAwesomeIcon(
+                            name: snapshot.data[index].icon.toString()),
                         snapshot.data[index].category.toString(),
                         snapshot.data[index].nominal.toString());
                   },
