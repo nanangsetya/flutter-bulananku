@@ -34,18 +34,24 @@ class Outcome {
     required this.time,
     required this.description,
     required this.nominal,
+    required this.color,
+    required this.icon,
   });
 
-  int category;
+  String category;
   String time;
   String description;
   String nominal;
+  String color;
+  String icon;
 
   factory Outcome.fromJson(Map<String, dynamic> json) => Outcome(
         category: json["category"],
         time: json["time"],
         description: json["description"],
         nominal: json["nominal"],
+        color: json["color"],
+        icon: json["icon"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -53,5 +59,7 @@ class Outcome {
         "time": time,
         "description": description,
         "nominal": nominal,
+        "color": color,
+        "icon": icon,
       };
 }

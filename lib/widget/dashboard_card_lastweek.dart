@@ -1,10 +1,11 @@
 import 'dart:developer';
 
+import 'package:bulananku/helper/colors_helper.dart';
+import 'package:bulananku/helper/icons_helper.dart';
 import 'package:bulananku/models/this_week.dart';
 import 'package:bulananku/services/get_data_this_week.dart';
 import 'package:bulananku/styles/color_style.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CardWeek extends StatefulWidget {
   const CardWeek({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class _CardWeekState extends State<CardWeek> {
               future: GetThisWeek.getData(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
-                  inspect(snapshot.data);
+                  inspect(snapshot.data[0].outcomes.length);
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
                       physics: ScrollPhysics(),
@@ -65,50 +66,64 @@ class dateList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: MediaQuery.of(context).size.width * 1,
-        padding: EdgeInsets.all(15),
-        margin: EdgeInsets.only(bottom: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: ColorStyle.cCardColor,
-          boxShadow: [
-            BoxShadow(
-              color: Color(0xffECF2FF),
-              spreadRadius: 0,
-              blurRadius: 4,
-              offset: Offset(0, 0), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Column(children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(dateText,
-                  style: TextStyle(
-                    color: ColorStyle.cText,
-                    fontFamily: "Bahnschrift",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 13,
-                  )),
-            ),
+    return IntrinsicHeight(
+      child: Container(
+          width: MediaQuery.of(context).size.width * 1,
+          padding: EdgeInsets.all(15),
+          margin: EdgeInsets.only(bottom: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: ColorStyle.cCardColor,
+            boxShadow: [
+              BoxShadow(
+                color: Color(0xffECF2FF),
+                spreadRadius: 0,
+                blurRadius: 4,
+                offset: Offset(0, 0), // changes position of shadow
+              ),
+            ],
           ),
-          ListView.builder(
-              itemCount: outcomeList.length, itemBuilder: itemBuilder)
-        ]));
+          child: Column(children: [
+            Container(
+              margin: EdgeInsets.only(bottom: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(dateText,
+                    style: TextStyle(
+                      color: ColorStyle.cText,
+                      fontFamily: "Bahnschrift",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                    )),
+              ),
+            ),
+            ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemCount: outcomesList.length,
+                itemBuilder: (context, index) {
+                  return outcomeBox(
+                      outcomeColor: getColor(name: outcomesList[index].color),
+                      outcomeIcon:
+                          getFontAwesomeIcon(name: outcomesList[index].color),
+                      outcomeDescription: outcomesList[index].description,
+                      outcomeTime: outcomesList[index].time,
+                      outcomeNominal: outcomesList[index].nominal);
+                }),
+          ])),
+    );
   }
 }
 
-class outcomeList extends StatelessWidget {
+class outcomeBox extends StatelessWidget {
   final Color outcomeColor;
   final IconData outcomeIcon;
   final String outcomeDescription;
   final String outcomeTime;
   final String outcomeNominal;
 
-  const outcomeList(
+  const outcomeBox(
       {required this.outcomeColor,
       required this.outcomeIcon,
       required this.outcomeDescription,
