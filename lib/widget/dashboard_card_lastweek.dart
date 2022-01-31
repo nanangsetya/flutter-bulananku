@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:bulananku/models/this_week.dart';
 import 'package:bulananku/services/get_data_this_week.dart';
 import 'package:bulananku/styles/color_style.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,7 @@ class _CardWeekState extends State<CardWeek> {
 
 class dateList extends StatelessWidget {
   final String dateText;
-  final List<dynamic> outcomesList;
+  final List<Outcome> outcomesList;
 
   const dateList({required this.dateText, required this.outcomesList});
 
@@ -93,7 +94,9 @@ class dateList extends StatelessWidget {
                     fontSize: 13,
                   )),
             ),
-          )
+          ),
+          ListView.builder(
+              itemCount: outcomeList.length, itemBuilder: itemBuilder)
         ]));
   }
 }
