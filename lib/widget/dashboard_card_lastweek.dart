@@ -51,7 +51,7 @@ class _CardWeekState extends State<CardWeek> {
                 } else if (snapshot.hasError) {
                   return Text("error");
                 } else {
-                  return Text("Loading...");
+                  return Center(child: CircularProgressIndicator());
                 }
               }),
         ],
