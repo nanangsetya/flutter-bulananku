@@ -36,6 +36,8 @@ class _DashboardPageState extends State<DashboardPage> {
         child: Container(
           color: ColorStyle.cBaseColor,
           child: ListView(
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
             children: [
               Stack(
                 children: [

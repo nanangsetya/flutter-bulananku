@@ -34,16 +34,18 @@ class _CardWeekState extends State<CardWeek> {
               future: GetThisWeek.getData(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
-                  inspect(snapshot.data[0].outcomes.length);
+                  // inspect(snapshot.data[0].outcomes.length);
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
                       physics: ScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 7,
+                      itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
                         return dateList(
                           dateText: snapshot.data[index].date,
                           outcomesList: snapshot.data[index].outcomes,
+                          // outcomesList: _buildOutcomeDetail(
+                          //     snapshot.data[index].outcomes),
                         );
                       });
                 } else if (snapshot.hasError) {
@@ -58,47 +60,57 @@ class _CardWeekState extends State<CardWeek> {
   }
 }
 
+// Widget _buildOutcomeDetail(List<Outcome> outcomesList) {
+//   return ListView.builder(
+//       shrinkWrap: true,
+//       scrollDirection: Axis.vertical,
+//       itemBuilder: (context, index) {
+//         return Text(outcomesList[index].description);
+//       },
+//       itemCount: outcomesList.length);
+// }
+
 class dateList extends StatelessWidget {
   final String dateText;
   final List<Outcome> outcomesList;
+  // final Widget outcomesList;
 
   const dateList({required this.dateText, required this.outcomesList});
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Container(
-          width: MediaQuery.of(context).size.width * 1,
-          padding: EdgeInsets.all(15),
-          margin: EdgeInsets.only(bottom: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: ColorStyle.cCardColor,
-            boxShadow: [
-              BoxShadow(
-                color: Color(0xffECF2FF),
-                spreadRadius: 0,
-                blurRadius: 4,
-                offset: Offset(0, 0), // changes position of shadow
-              ),
-            ],
-          ),
-          child: Column(children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 10),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(dateText,
-                    style: TextStyle(
-                      color: ColorStyle.cText,
-                      fontFamily: "Bahnschrift",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13,
-                    )),
-              ),
+    return Container(
+        width: MediaQuery.of(context).size.width * 1,
+        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.only(bottom: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: ColorStyle.cCardColor,
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xffECF2FF),
+              spreadRadius: 0,
+              blurRadius: 4,
+              offset: Offset(0, 0), // changes position of shadow
             ),
-            ListView.builder(
-                scrollDirection: Axis.horizontal,
+          ],
+        ),
+        child: Column(children: [
+          Container(
+            margin: EdgeInsets.only(bottom: 10),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(dateText,
+                  style: TextStyle(
+                    color: ColorStyle.cText,
+                    fontFamily: "Bahnschrift",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  )),
+            ),
+          ),
+          Container(
+            child: ListView.builder(
                 shrinkWrap: true,
                 physics: ScrollPhysics(),
                 itemCount: outcomesList.length,
@@ -106,13 +118,13 @@ class dateList extends StatelessWidget {
                   return outcomeBox(
                       outcomeColor: getColor(name: outcomesList[index].color),
                       outcomeIcon:
-                          getFontAwesomeIcon(name: outcomesList[index].color),
+                          getFontAwesomeIcon(name: outcomesList[index].icon),
                       outcomeDescription: outcomesList[index].description,
                       outcomeTime: outcomesList[index].time,
                       outcomeNominal: outcomesList[index].nominal);
                 }),
-          ])),
-    );
+          ),
+        ]));
   }
 }
 
