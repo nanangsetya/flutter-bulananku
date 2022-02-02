@@ -41,7 +41,7 @@ class _CardWeekState extends State<CardWeek> {
                       shrinkWrap: true,
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        return dateList(
+                        return _dateWidget(
                           dateText: snapshot.data[index].date,
                           outcomesList: snapshot.data[index].outcomes,
                           // outcomesList: _buildOutcomeDetail(
@@ -60,22 +60,12 @@ class _CardWeekState extends State<CardWeek> {
   }
 }
 
-// Widget _buildOutcomeDetail(List<Outcome> outcomesList) {
-//   return ListView.builder(
-//       shrinkWrap: true,
-//       scrollDirection: Axis.vertical,
-//       itemBuilder: (context, index) {
-//         return Text(outcomesList[index].description);
-//       },
-//       itemCount: outcomesList.length);
-// }
-
-class dateList extends StatelessWidget {
+class _dateWidget extends StatelessWidget {
   final String dateText;
   final List<Outcome> outcomesList;
   // final Widget outcomesList;
 
-  const dateList({required this.dateText, required this.outcomesList});
+  const _dateWidget({required this.dateText, required this.outcomesList});
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +105,7 @@ class dateList extends StatelessWidget {
                 physics: ScrollPhysics(),
                 itemCount: outcomesList.length,
                 itemBuilder: (context, index) {
-                  return outcomeBox(
+                  return _outcomeWidget(
                       outcomeColor: getColor(name: outcomesList[index].color),
                       outcomeIcon:
                           getFontAwesomeIcon(name: outcomesList[index].icon),
@@ -128,14 +118,14 @@ class dateList extends StatelessWidget {
   }
 }
 
-class outcomeBox extends StatelessWidget {
+class _outcomeWidget extends StatelessWidget {
   final Color outcomeColor;
   final IconData outcomeIcon;
   final String outcomeDescription;
   final String outcomeTime;
   final String outcomeNominal;
 
-  const outcomeBox(
+  const _outcomeWidget(
       {required this.outcomeColor,
       required this.outcomeIcon,
       required this.outcomeDescription,

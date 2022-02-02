@@ -57,7 +57,7 @@ class _CardMonthState extends State<CardMonth> {
                     // crossAxisCount: 2,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return boxSummary(
+                    return _summaryWidget(
                         getColor(name: snapshot.data[index].color.toString()),
                         getFontAwesomeIcon(
                             name: snapshot.data[index].icon.toString()),
@@ -76,13 +76,14 @@ class _CardMonthState extends State<CardMonth> {
   }
 }
 
-class boxSummary extends StatelessWidget {
+class _summaryWidget extends StatelessWidget {
   final Color iconColor;
   final IconData iconData;
   final String boxName;
   final String boxTotal;
 
-  const boxSummary(this.iconColor, this.iconData, this.boxName, this.boxTotal);
+  const _summaryWidget(
+      this.iconColor, this.iconData, this.boxName, this.boxTotal);
 
   @override
   Widget build(BuildContext context) {
