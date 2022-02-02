@@ -41,7 +41,7 @@ IconData? getIconGuessFavorMaterial({required String name}) {
 }
 
 // Kinda self explanatory, no?
-IconData? getMaterialIcon({required String name}) {
+getMaterialIcon({required String name}) {
   return IconsMap[name];
 }
 

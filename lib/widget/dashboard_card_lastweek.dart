@@ -44,8 +44,6 @@ class _CardWeekState extends State<CardWeek> {
                         return _dateWidget(
                           dateText: snapshot.data[index].date,
                           outcomesList: snapshot.data[index].outcomes,
-                          // outcomesList: _buildOutcomeDetail(
-                          //     snapshot.data[index].outcomes),
                         );
                       });
                 } else if (snapshot.hasError) {
@@ -63,7 +61,6 @@ class _CardWeekState extends State<CardWeek> {
 class _dateWidget extends StatelessWidget {
   final String dateText;
   final List<Outcome> outcomesList;
-  // final Widget outcomesList;
 
   const _dateWidget({required this.dateText, required this.outcomesList});
 
