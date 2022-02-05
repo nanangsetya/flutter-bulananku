@@ -1,5 +1,7 @@
 import 'package:bulananku/helper/colors_helper.dart';
 import 'package:bulananku/helper/icons_helper.dart';
+import 'package:bulananku/pages/register_page.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -149,7 +151,12 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                   TextSpan(
                       text: " create new account",
-                      style: TextStyle(color: getColor(name: 'green')))
+                      style: TextStyle(color: getColor(name: 'green')),
+                      recognizer: new TapGestureRecognizer()
+                        ..onTap = () => Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return RegisterPage();
+                            })))
                 ])),
           ],
         ),
