@@ -129,6 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             spreadRadius: 1)
                       ]),
                   child: TextFormField(
+                    obscureText: true,
                     autofocus: false,
                     style: TextStyle(
                         color: getColor(name: 'green'),
@@ -141,7 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: Colors.grey.shade400,
                           letterSpacing: 1.5),
                       prefixIcon: Icon(
-                        getMaterialIcon(name: 'lock'),
+                        getMaterialIcon(name: 'lock_open'),
                         color: getColor(name: 'green'),
                         size: 30,
                       ),
@@ -160,6 +161,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             spreadRadius: 1)
                       ]),
                   child: TextFormField(
+                    obscureText: true,
                     autofocus: false,
                     style: TextStyle(
                         color: getColor(name: 'green'),
@@ -172,7 +174,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: Colors.grey.shade400,
                           letterSpacing: 1.5),
                       prefixIcon: Icon(
-                        getMaterialIcon(name: 'lock'),
+                        getMaterialIcon(name: 'lock_open'),
                         color: getColor(name: 'green'),
                         size: 30,
                       ),
