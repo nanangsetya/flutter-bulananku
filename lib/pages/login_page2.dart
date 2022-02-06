@@ -7,7 +7,6 @@ import 'package:bulananku/pages/register_page.dart';
 import 'package:bulananku/services/auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dialogs/flutter_dialogs.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
