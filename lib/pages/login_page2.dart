@@ -1,8 +1,13 @@
+import 'dart:developer';
+
 import 'package:bulananku/helper/colors_helper.dart';
 import 'package:bulananku/helper/icons_helper.dart';
+import 'package:bulananku/pages/dashboard_page.dart';
 import 'package:bulananku/pages/register_page.dart';
+import 'package:bulananku/services/auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dialogs/flutter_dialogs.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,6 +23,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final double _width = MediaQuery.of(context).size.width * 1;
     final double _height = MediaQuery.of(context).size.height * 1;
+
+    final _emailField = new TextEditingController();
+    final _passwordField = new TextEditingController();
 
     return Scaffold(
       body: Container(
@@ -76,12 +84,13 @@ class _LoginPageState extends State<LoginPage> {
                     ]),
                 child: TextFormField(
                   autofocus: false,
+                  controller: _emailField,
                   style: TextStyle(
                       color: getColor(name: 'green'),
                       fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    labelText: "USERNAME",
+                    labelText: "EMAIL",
                     labelStyle: TextStyle(
                         fontSize: 12,
                         color: Colors.grey.shade400,
@@ -108,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextFormField(
                   obscureText: true,
                   autofocus: false,
+                  controller: _passwordField,
                   style: TextStyle(
                       color: getColor(name: 'green'),
                       fontWeight: FontWeight.bold),
@@ -138,7 +148,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Container(
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _loginProcess(_emailField, _passwordField);
+                  },
                   child: Text("LOGIN",
                       style: TextStyle(fontSize: 16, letterSpacing: 2)),
                   style: ElevatedButton.styleFrom(
@@ -167,4 +179,50 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  _loginProcess(email, password) {
+    if (_formKey.currentState!.validate()) {
+      if (email.text.isEmpty || password.text.isEmpty) {
+        _alertDialog(context, "Email and Password cannot blank.");
+      } else {
+        Auth.loginProcess(email.text.toString(), password.text.toString())
+            .then((value) {
+          if (value.status) {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => DashboardPage()));
+          } else {
+            _alertDialog(context, "Authentication failed.");
+          }
+        });
+      }
+    }
+  }
+}
+
+_alertDialog(BuildContext context, String msg) {
+  showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: [
+              Text(msg),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
