@@ -37,6 +37,7 @@ class _DashboardPageState extends State<DashboardPage> {
         child: Container(
           color: ColorStyle.cBaseColor,
           child: RefreshIndicator(
+            edgeOffset: 0,
             onRefresh: () {
               return Future.delayed(
                 Duration(seconds: 1),

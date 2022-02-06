@@ -34,7 +34,6 @@ class _CardWeekState extends State<CardWeek> {
               future: GetThisWeek.getData(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
-                  // inspect(snapshot.data[0].outcomes.length);
                   return ListView.builder(
                       scrollDirection: Axis.vertical,
                       physics: ScrollPhysics(),
