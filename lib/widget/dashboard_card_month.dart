@@ -35,6 +35,35 @@ class _CardMonthState extends State<CardMonth> {
                     fontFamily: "Bahnschrift",
                     fontWeight: FontWeight.bold,
                     fontSize: 14))),
+        // Container(
+        //   padding: EdgeInsets.all(10),
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(5),
+        //     color: ColorStyle.cCardColor,
+        //     boxShadow: [
+        //       BoxShadow(
+        //         color: Color(0xffD8E5FF),
+        //         spreadRadius: 0,
+        //         blurRadius: 5,
+        //         offset: Offset(0, 0), // changes position of shadow
+        //       ),
+        //     ],
+        //   ),
+        //   child: Row(
+        //     children: [
+        //       Container(
+        //           height: 40,
+        //           width: 40,
+        //           decoration: BoxDecoration(
+        //               color: ColorStyle.cBaseColor,
+        //               borderRadius: BorderRadius.circular(10)),
+        //           child: Image.asset(
+        //             "images/icons/food.png",
+        //             scale: 2,
+        //           )),
+        //     ],
+        //   ),
+        // ),
         Container(
           width: MediaQuery.of(context).size.width,
           child: FutureBuilder(
@@ -57,10 +86,8 @@ class _CardMonthState extends State<CardMonth> {
                     // crossAxisCount: 2,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return _summaryWidget(
-                        getColor(name: snapshot.data[index].color.toString()),
-                        getFontAwesomeIcon(
-                            name: snapshot.data[index].icon.toString()),
+                    return _summaryWidgets(
+                        snapshot.data[index].icon.toString(),
                         snapshot.data[index].category.toString(),
                         snapshot.data[index].nominal.toString());
                   },
@@ -76,14 +103,12 @@ class _CardMonthState extends State<CardMonth> {
   }
 }
 
-class _summaryWidget extends StatelessWidget {
-  final Color iconColor;
-  final IconData iconData;
+class _summaryWidgets extends StatelessWidget {
+  final String iconData;
   final String boxName;
   final String boxTotal;
 
-  const _summaryWidget(
-      this.iconColor, this.iconData, this.boxName, this.boxTotal);
+  const _summaryWidgets(this.iconData, this.boxName, this.boxTotal);
 
   @override
   Widget build(BuildContext context) {
@@ -106,15 +131,15 @@ class _summaryWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                color: iconColor, borderRadius: BorderRadius.circular(10)),
-            child: Icon(
-              iconData,
-              color: ColorStyle.cCardColor,
-            ),
-          ),
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                  color: ColorStyle.cBaseColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Image.asset(
+                "images/icons/" + iconData + ".png",
+                scale: 2,
+              )),
           Container(
             margin: EdgeInsets.only(top: 10),
             child: Text(

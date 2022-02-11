@@ -68,6 +68,12 @@ flutter:
     - images/avatarw.jpeg
     - images/logo.png
 
+    #icons
+    - images/icons/food.png
+    - images/icons/rocket.png
+    - images/icons/tshirt.png
+    - images/icons/tool.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

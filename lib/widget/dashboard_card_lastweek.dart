@@ -102,9 +102,7 @@ class _dateWidget extends StatelessWidget {
                 itemCount: outcomesList.length,
                 itemBuilder: (context, index) {
                   return _outcomeWidget(
-                      outcomeColor: getColor(name: outcomesList[index].color),
-                      outcomeIcon:
-                          getFontAwesomeIcon(name: outcomesList[index].icon),
+                      outcomeIcon: outcomesList[index].icon,
                       outcomeDescription: outcomesList[index].description,
                       outcomeTime: outcomesList[index].time,
                       outcomeNominal: outcomesList[index].nominal);
@@ -115,15 +113,13 @@ class _dateWidget extends StatelessWidget {
 }
 
 class _outcomeWidget extends StatelessWidget {
-  final Color outcomeColor;
-  final IconData outcomeIcon;
+  final String outcomeIcon;
   final String outcomeDescription;
   final String outcomeTime;
   final String outcomeNominal;
 
   const _outcomeWidget(
-      {required this.outcomeColor,
-      required this.outcomeIcon,
+      {required this.outcomeIcon,
       required this.outcomeDescription,
       required this.outcomeTime,
       required this.outcomeNominal});
@@ -137,15 +133,15 @@ class _outcomeWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                  color: outcomeColor, borderRadius: BorderRadius.circular(10)),
-              child: Icon(
-                outcomeIcon,
-                color: ColorStyle.cCardColor,
-              ),
-            ),
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                    color: ColorStyle.cBaseColor,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Image.asset(
+                  "images/icons/" + outcomeIcon + ".png",
+                  scale: 2,
+                )),
           ),
           Expanded(
               flex: 4,
