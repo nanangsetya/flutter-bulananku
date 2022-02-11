@@ -15,13 +15,6 @@ class CardMonth extends StatefulWidget {
 }
 
 class _CardMonthState extends State<CardMonth> {
-  Set<Map<dynamic, dynamic>> contents = {
-    {"color": ColorStyle.cYellow, "icon": FontAwesomeIcons.utensils},
-    {"color": ColorStyle.cBlue, "icon": FontAwesomeIcons.tshirt},
-    {"color": ColorStyle.cGreen, "icon": FontAwesomeIcons.building},
-    {"color": ColorStyle.cRed, "icon": FontAwesomeIcons.robot}
-  };
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,35 +28,77 @@ class _CardMonthState extends State<CardMonth> {
                     fontFamily: "Bahnschrift",
                     fontWeight: FontWeight.bold,
                     fontSize: 14))),
-        // Container(
-        //   padding: EdgeInsets.all(10),
-        //   decoration: BoxDecoration(
-        //     borderRadius: BorderRadius.circular(5),
-        //     color: ColorStyle.cCardColor,
-        //     boxShadow: [
-        //       BoxShadow(
-        //         color: Color(0xffD8E5FF),
-        //         spreadRadius: 0,
-        //         blurRadius: 5,
-        //         offset: Offset(0, 0), // changes position of shadow
-        //       ),
-        //     ],
-        //   ),
-        //   child: Row(
-        //     children: [
-        //       Container(
-        //           height: 40,
-        //           width: 40,
-        //           decoration: BoxDecoration(
-        //               color: ColorStyle.cBaseColor,
-        //               borderRadius: BorderRadius.circular(10)),
-        //           child: Image.asset(
-        //             "images/icons/food.png",
-        //             scale: 2,
-        //           )),
-        //     ],
-        //   ),
-        // ),
+        Container(
+          child: GridView.count(
+            shrinkWrap: true,
+            primary: false,
+            padding: EdgeInsets.only(bottom: 10),
+            crossAxisSpacing: 10,
+            crossAxisCount: 2,
+            childAspectRatio: MediaQuery.of(context).size.width /
+                (MediaQuery.of(context).size.height / 6),
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: ColorStyle.cCardColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xffD8E5FF),
+                      spreadRadius: 0,
+                      blurRadius: 5,
+                      offset: Offset(0, 0), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            color: ColorStyle.cBaseColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Image.asset(
+                          "images/icons/income.png",
+                          scale: 2,
+                        )),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: ColorStyle.cCardColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xffD8E5FF),
+                      spreadRadius: 0,
+                      blurRadius: 5,
+                      offset: Offset(0, 0), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            color: ColorStyle.cBaseColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Image.asset(
+                          "images/icons/outcome.png",
+                          scale: 2,
+                        )),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
         Container(
           width: MediaQuery.of(context).size.width,
           child: FutureBuilder(
