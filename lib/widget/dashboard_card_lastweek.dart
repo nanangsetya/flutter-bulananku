@@ -140,7 +140,7 @@ class _outcomeWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 child: Image.asset(
                   "images/icons/" + outcomeIcon + ".png",
-                  scale: 2,
+                  scale: 2.2,
                 )),
           ),
           Expanded(

@@ -138,7 +138,7 @@ class _summaryWidgets extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)),
               child: Image.asset(
                 "images/icons/" + iconData + ".png",
-                scale: 2,
+                scale: 2.2,
               )),
           Container(
             margin: EdgeInsets.only(top: 10),
