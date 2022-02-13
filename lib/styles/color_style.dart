@@ -11,4 +11,5 @@ class ColorStyle {
   static Color cText = const Color(0xff324461);
   static Color cCardColor = const Color(0xffffffff);
   static Color cBaseColor = const Color(0xffF0F5FF);
+  static Color cIconBoxColor = const Color(0xffD6E4FF);
 }

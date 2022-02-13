@@ -75,7 +75,7 @@ class _CardMonthState extends State<CardMonth> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                              color: ColorStyle.cBaseColor,
+                              color: ColorStyle.cIconBoxColor,
                               borderRadius: BorderRadius.circular(10)),
                           child: Image.asset(
                             "images/icons/income.png",
@@ -121,7 +121,7 @@ class _CardMonthState extends State<CardMonth> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                              color: ColorStyle.cBaseColor,
+                              color: ColorStyle.cIconBoxColor,
                               borderRadius: BorderRadius.circular(10)),
                           child: Image.asset(
                             "images/icons/outcome.png",
@@ -218,7 +218,7 @@ class _summaryWidgets extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                  color: ColorStyle.cBaseColor,
+                  color: ColorStyle.cIconBoxColor,
                   borderRadius: BorderRadius.circular(10)),
               child: Image.asset(
                 "images/icons/" + iconData + ".png",
