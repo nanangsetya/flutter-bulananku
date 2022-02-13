@@ -1,11 +1,9 @@
 import 'dart:developer';
 
-import 'package:bulananku/helper/colors_helper.dart';
-import 'package:bulananku/helper/icons_helper.dart';
-import 'package:bulananku/services/get_data_this_month.dart';
+import 'package:bulananku/services/get_data_this_month_category.dart';
+import 'package:bulananku/services/get_data_this_month_summary.dart';
 import 'package:bulananku/styles/color_style.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CardMonth extends StatefulWidget {
   const CardMonth({Key? key}) : super(key: key);
@@ -15,6 +13,23 @@ class CardMonth extends StatefulWidget {
 }
 
 class _CardMonthState extends State<CardMonth> {
+  String _income = "0";
+  String _outcome = "0";
+
+  setData() async {
+    var data = await GetThisMonthSummary.getData();
+    setState(() {
+      _income = data.income;
+      _outcome = data.outcome;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -54,16 +69,33 @@ class _CardMonthState extends State<CardMonth> {
                 ),
                 child: Row(
                   children: [
-                    Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: ColorStyle.cBaseColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Image.asset(
-                          "images/icons/income.png",
-                          scale: 2,
-                        )),
+                    Flexible(
+                      flex: 2,
+                      child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              color: ColorStyle.cBaseColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Image.asset(
+                            "images/icons/income.png",
+                            scale: 2,
+                          )),
+                    ),
+                    Flexible(
+                      flex: 8,
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          _income,
+                          style: TextStyle(
+                              color: ColorStyle.cText,
+                              fontFamily: "Bahnschrift",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -83,16 +115,33 @@ class _CardMonthState extends State<CardMonth> {
                 ),
                 child: Row(
                   children: [
-                    Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            color: ColorStyle.cBaseColor,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Image.asset(
-                          "images/icons/outcome.png",
-                          scale: 2,
-                        )),
+                    Flexible(
+                      flex: 2,
+                      child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              color: ColorStyle.cBaseColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Image.asset(
+                            "images/icons/outcome.png",
+                            scale: 2,
+                          )),
+                    ),
+                    Flexible(
+                      flex: 8,
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          _outcome,
+                          style: TextStyle(
+                              color: ColorStyle.cText,
+                              fontFamily: "Bahnschrift",
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
