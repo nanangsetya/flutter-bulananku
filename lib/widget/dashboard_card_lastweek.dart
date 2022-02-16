@@ -6,6 +6,7 @@ import 'package:bulananku/models/this_week.dart';
 import 'package:bulananku/services/get_data_this_week.dart';
 import 'package:bulananku/styles/color_style.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CardWeek extends StatefulWidget {
   const CardWeek({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _CardWeekState extends State<CardWeek> {
                       shrinkWrap: true,
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        return _dateWidget(
+                        return DateWidget(
                           dateText: snapshot.data[index].date,
                           outcomesList: snapshot.data[index].outcomes,
                         );
@@ -48,7 +49,7 @@ class _CardWeekState extends State<CardWeek> {
                 } else if (snapshot.hasError) {
                   return Text("error");
                 } else {
-                  return Center(child: CircularProgressIndicator());
+                  return LoadingWidget();
                 }
               }),
         ],
@@ -57,11 +58,91 @@ class _CardWeekState extends State<CardWeek> {
   }
 }
 
-class _dateWidget extends StatelessWidget {
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width * 1,
+        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.only(bottom: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: ColorStyle.cCardColor,
+          boxShadow: [
+            BoxShadow(
+              color: Color(0xffECF2FF),
+              spreadRadius: 0,
+              blurRadius: 4,
+              offset: Offset(0, 0), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Shimmer.fromColors(
+          baseColor: Colors.grey.shade300,
+          highlightColor: Colors.grey.shade100,
+          child: Column(children: [
+            Container(
+              margin: EdgeInsets.only(bottom: 10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  margin: EdgeInsets.only(top: 10),
+                  width: MediaQuery.of(context).size.width * 0.2,
+                  height: 8.0,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10, bottom: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                          color: ColorStyle.cIconBoxColor,
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+                  ),
+                  Expanded(
+                      flex: 9,
+                      child: Container(
+                        margin: EdgeInsets.only(left: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 8.0,
+                              color: Colors.white,
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 10),
+                              width: double.infinity,
+                              height: 8.0,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      )),
+                ],
+              ),
+            )
+          ]),
+        ));
+  }
+}
+
+class DateWidget extends StatelessWidget {
   final String dateText;
   final List<Outcome> outcomesList;
 
-  const _dateWidget({required this.dateText, required this.outcomesList});
+  const DateWidget({required this.dateText, required this.outcomesList});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +182,7 @@ class _dateWidget extends StatelessWidget {
                 physics: ScrollPhysics(),
                 itemCount: outcomesList.length,
                 itemBuilder: (context, index) {
-                  return _outcomeWidget(
+                  return OutcomeWidget(
                       outcomeIcon: outcomesList[index].icon,
                       outcomeDescription: outcomesList[index].description,
                       outcomeTime: outcomesList[index].time,
@@ -112,13 +193,13 @@ class _dateWidget extends StatelessWidget {
   }
 }
 
-class _outcomeWidget extends StatelessWidget {
+class OutcomeWidget extends StatelessWidget {
   final String outcomeIcon;
   final String outcomeDescription;
   final String outcomeTime;
   final String outcomeNominal;
 
-  const _outcomeWidget(
+  const OutcomeWidget(
       {required this.outcomeIcon,
       required this.outcomeDescription,
       required this.outcomeTime,

@@ -4,6 +4,7 @@ import 'package:bulananku/services/get_data_this_month_category.dart';
 import 'package:bulananku/services/get_data_this_month_summary.dart';
 import 'package:bulananku/styles/color_style.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CardMonth extends StatefulWidget {
   const CardMonth({Key? key}) : super(key: key);
@@ -154,9 +155,20 @@ class _CardMonthState extends State<CardMonth> {
             future: GetThisMonth.getData(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
-                return Center(child: CircularProgressIndicator());
+                return GridView.builder(
+                  itemCount: 2,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  primary: false,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 16 / 9,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) => LoadingWidgets(),
+                );
               } else if (snapshot.hasData) {
-                // inspect(snapshot.data);
                 return GridView.builder(
                   itemCount: snapshot.data.length,
                   shrinkWrap: true,
@@ -167,17 +179,28 @@ class _CardMonthState extends State<CardMonth> {
                     childAspectRatio: 16 / 9,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    // crossAxisCount: 2,
                   ),
                   itemBuilder: (BuildContext context, int index) {
-                    return _summaryWidgets(
+                    return SummaryWidgets(
                         snapshot.data[index].icon.toString(),
                         snapshot.data[index].category.toString(),
                         snapshot.data[index].nominal.toString());
                   },
                 );
               } else {
-                return Center(child: CircularProgressIndicator());
+                return GridView.builder(
+                  itemCount: 2,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  primary: false,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 16 / 9,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) => LoadingWidgets(),
+                );
               }
             },
           ),
@@ -187,12 +210,12 @@ class _CardMonthState extends State<CardMonth> {
   }
 }
 
-class _summaryWidgets extends StatelessWidget {
+class SummaryWidgets extends StatelessWidget {
   final String iconData;
   final String boxName;
   final String boxTotal;
 
-  const _summaryWidgets(this.iconData, this.boxName, this.boxTotal);
+  const SummaryWidgets(this.iconData, this.boxName, this.boxTotal);
 
   @override
   Widget build(BuildContext context) {
@@ -247,6 +270,56 @@ class _summaryWidgets extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class LoadingWidgets extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: ColorStyle.cCardColor,
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xffD8E5FF),
+            spreadRadius: 0,
+            blurRadius: 5,
+            offset: Offset(0, 0), // changes position of shadow
+          ),
+        ],
+      ),
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                  color: ColorStyle.cIconBoxColor,
+                  borderRadius: BorderRadius.circular(10)),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: double.infinity,
+              height: 8.0,
+              color: Colors.white,
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: double.infinity,
+              height: 8.0,
+              color: Colors.white,
+            ),
+          ],
+        ),
       ),
     );
   }
