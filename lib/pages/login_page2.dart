@@ -5,6 +5,7 @@ import 'package:bulananku/helper/icons_helper.dart';
 import 'package:bulananku/pages/dashboard_page.dart';
 import 'package:bulananku/pages/register_page.dart';
 import 'package:bulananku/services/auth.dart';
+import 'package:bulananku/widget/loadingwidget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -137,12 +138,17 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Container(
                 alignment: Alignment.centerRight,
-                child: Text(
-                  "Forgot password ?",
-                  style: TextStyle(
-                      color: getColor(name: 'green'),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12),
+                child: GestureDetector(
+                  onTap: () {
+                    LoadingOverlay.of(context).show();
+                  },
+                  child: Text(
+                    "Forgot password ?",
+                    style: TextStyle(
+                        color: getColor(name: 'green'),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12),
+                  ),
                 ),
               ),
               Container(
@@ -184,6 +190,7 @@ class _LoginPageState extends State<LoginPage> {
       if (email.text.isEmpty || password.text.isEmpty) {
         _alertDialog(context, "Email and Password cannot blank.");
       } else {
+        LoadingOverlay.of(context).show();
         Auth.loginProcess(email.text.toString(), password.text.toString())
             .then((value) {
           if (value.status) {
@@ -192,6 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                 MaterialPageRoute(
                     builder: (BuildContext context) => DashboardPage()));
           } else {
+            LoadingOverlay.of(context).hide();
             _alertDialog(context, "Authentication failed.");
           }
         });
