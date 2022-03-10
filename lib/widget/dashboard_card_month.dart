@@ -154,7 +154,7 @@ class _CardMonthState extends State<CardMonth> {
           child: FutureBuilder(
             future: GetThisMonth.getData(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.data == null) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
                 return GridView.builder(
                   itemCount: 2,
                   shrinkWrap: true,
@@ -167,41 +167,79 @@ class _CardMonthState extends State<CardMonth> {
                     mainAxisSpacing: 10,
                   ),
                   itemBuilder: (context, index) => LoadingWidgets(),
-                );
-              } else if (snapshot.hasData) {
-                return GridView.builder(
-                  itemCount: snapshot.data.length,
-                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  primary: false,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 16 / 9,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    return SummaryWidgets(
-                        snapshot.data[index].icon.toString(),
-                        snapshot.data[index].category.toString(),
-                        snapshot.data[index].nominal.toString());
-                  },
                 );
               } else {
-                return GridView.builder(
-                  itemCount: 2,
-                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  primary: false,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 16 / 9,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemBuilder: (context, index) => LoadingWidgets(),
-                );
+                if (snapshot.hasData) {
+                  return GridView.builder(
+                    itemCount: snapshot.data.length,
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    primary: false,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 16 / 9,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return SummaryWidgets(
+                          snapshot.data[index].icon.toString(),
+                          snapshot.data[index].category.toString(),
+                          snapshot.data[index].nominal.toString());
+                    },
+                  );
+                } else {
+                  return Text(snapshot.hasError.toString());
+                }
               }
+              // if (snapshot.data == null) {
+              //   return GridView.builder(
+              //     itemCount: 2,
+              //     shrinkWrap: true,
+              //     physics: ScrollPhysics(),
+              //     primary: false,
+              //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 2,
+              //       childAspectRatio: 16 / 9,
+              //       crossAxisSpacing: 10,
+              //       mainAxisSpacing: 10,
+              //     ),
+              //     itemBuilder: (context, index) => LoadingWidgets(),
+              //   );
+              // } else if (snapshot.hasData) {
+              //   return GridView.builder(
+              //     itemCount: snapshot.data.length,
+              //     shrinkWrap: true,
+              //     physics: ScrollPhysics(),
+              //     primary: false,
+              //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 2,
+              //       childAspectRatio: 16 / 9,
+              //       crossAxisSpacing: 10,
+              //       mainAxisSpacing: 10,
+              //     ),
+              //     itemBuilder: (BuildContext context, int index) {
+              //       return SummaryWidgets(
+              //           snapshot.data[index].icon.toString(),
+              //           snapshot.data[index].category.toString(),
+              //           snapshot.data[index].nominal.toString());
+              //     },
+              //   );
+              // } else {
+              //   return GridView.builder(
+              //     itemCount: 2,
+              //     shrinkWrap: true,
+              //     physics: ScrollPhysics(),
+              //     primary: false,
+              //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 2,
+              //       childAspectRatio: 16 / 9,
+              //       crossAxisSpacing: 10,
+              //       mainAxisSpacing: 10,
+              //     ),
+              //     itemBuilder: (context, index) => LoadingWidgets(),
+              //   );
+              // }
             },
           ),
         ),

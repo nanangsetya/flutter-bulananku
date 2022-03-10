@@ -16,14 +16,18 @@ class _BottomNavbarState extends State<BottomNavbar> {
   void _onTapNavbar() {
     switch (widget.selectedIndex) {
       case 0:
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return DashboardPage();
-        }));
+        Navigator.push(context,
+                MaterialPageRoute(builder: (context) => DashboardPage()))
+            .then((value) {
+          setState(() {});
+        });
         break;
       case 1:
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return InputPage();
-        }));
+        Navigator.push(
+                context, MaterialPageRoute(builder: (context) => InputPage()))
+            .then((value) {
+          setState(() {});
+        });
         break;
     }
   }

@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                     builder: (BuildContext context) => DashboardPage()));
           } else {
             LoadingOverlay.of(context).hide();
-            _alertDialog(context, "Authentication failed.");
+            _alertDialog(context, value.message);
           }
         });
       }
